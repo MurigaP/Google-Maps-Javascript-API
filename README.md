@@ -1,18 +1,21 @@
 Google Maps Javascript API
 =======
 
-###Gmaps.js library  simplifies your life in spatial coding, Write less, Do More!!!!.
------
-####Geo-developing has got no better than this, and never will, given Google map is to be plugged into your website.
+Gmaps.js library  simplifies your life in spatial coding, Write less, Do More!!!!.
 
-#Features:
+-----
+Geo-developing has got no better than this, and never will, given Google map is to be plugged into your website.
+
+Features:
+===
 * Basic Javascript/jQuery syntax
 * Extensive Documentation
 * Scalable
 * Platform Independent(Works well in any browser)
 * Dependable Community
 --------
-##Dependancies / Requirements:
+Dependancies / Requirements:
+===
 1. jQuery plugin
 2. gmaps.js
 3. Bootstrap
