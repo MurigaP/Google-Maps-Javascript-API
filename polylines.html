@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Polylines</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="lib/styles.css" />
+</head>
+<body>
+  <h1>GMaps.js &mdash; Polylines</h1>
+  <div class="row">
+    <div class="jumbotron">
+      <div id="map"></div>
+    </div>
+    <div class="container">
+      <p>You can add polylines in GMaps.js this way:</p>
+      <pre>  path = [
+          [-0.42168236563605355, 36.941460594534874],
+           [-0.42228316416044315, 36.947425827383995],
+           [-0.4218111081809035, 36.95682428777218],
+           [-0.42653166668256465, 36.96609400212765],
+           [-0.43142387880142036, 36.95995710790157],
+           [-0.43253964603843986, 36.94884203374386],
+           [-0.4386334488120785, 36.94249056279659]
+         };
+
+map.drawPolyline({
+  path: path,
+  strokeColor: '#131540',
+  strokeOpacity: 0.6,
+  strokeWeight: 6
+});</pre>
+      <p>The path of the polyline is defined by an array of array of two (latitude and longitude).</p>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="lib/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC5oGUwT09nELrlGwrYOwJQj68yvSzUHGs&sensor=true"></script>
+<script type="text/javascript" src="lib/gmaps.js"></script>
+<script type="text/javascript">
+  var map;
+  $(document).ready(function(){
+    map = new GMaps({
+      el: '#map',
+      lat: -0.4237207,
+      lng: 36.9539251,
+      zoom: 17,
+      click: function(e){
+        console.log(e);
+      }
+    });
+
+    path = [
+      [-0.42168236563605355, 36.941460594534874],
+       [-0.42228316416044315, 36.947425827383995],
+       [-0.4218111081809035, 36.95682428777218],
+       [-0.42653166668256465, 36.96609400212765],
+       [-0.43142387880142036, 36.95995710790157],
+       [-0.43253964603843986, 36.94884203374386],
+       [-0.4386334488120785, 36.94249056279659]
+     ];
+
+    map.drawPolyline({
+      path: path,
+      strokeColor: '#131540',
+      strokeOpacity: 0.6,
+      strokeWeight: 6
+    });
+  });
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Basic</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="lib/styles.css" />
+</head>
+<body>
+  <h1>GMaps.js &mdash; Basic</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="jumbotron">
+      <div id="map"></div>
+    </div>
+    <div class="container">
+      <p>Using GMaps.js API is as easy as:</p>
+      <pre>new GMaps({
+  el: '#map',
+  lat: -0.427787,
+  lng: 36.9432071
+});</pre>
+      <p class="bg-primary">You just define <kbd> map container ID</kbd>, <kbd>latitude</kbd> and <kbd>longitude</kbd> of the map's center and the API does the magic for you.</p>
+      <blockquote><p class="bg-danger text-info">Note: </span>You also can define <kbd>zoom</kbd>, <kbd>width</kbd> and <kbd>height</kbd>. By default, zoom is 15. Width and height in a CSS class will
+         replace these values.</p></blockquote>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="lib/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC5oGUwT09nELrlGwrYOwJQj68yvSzUHGs&sensor=true"></script>
+<script type="text/javascript" src="lib/gmaps.js"></script>
+<script type="text/javascript">
+  var map;
+  $(document).ready(function(){
+    map = new GMaps({
+      el: '#map',
+      lat: -0.427787,
+      lng: 36.9432071,
+      zoom: 14,
+      zoomControl : true,
+      zoomControlOpt: {
+          style : 'SMALL',
+          position: 'TOP_RIGHT'
+      },
+      panControl : true,
+      streetViewControl : true,
+      mapTypeControl: true,
+      overviewMapControl: false
+    });
+  });
+</script>
+</html>

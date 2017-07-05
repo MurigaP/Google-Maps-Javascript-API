@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://earth.google.com/kml/2.0"><Placemark>
+<description><![CDATA[Central, Kenya]]></description>
+<name><![CDATA[Nyeri]]></name>
+<visibility>1</visibility>
+<Point>
+<coordinates>36.95,-0.4166667,0</coordinates>
+</Point>
+</Placemark>
+</kml>

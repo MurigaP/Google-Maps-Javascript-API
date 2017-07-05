@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Elevation locations</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="lib/styles.css" />
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>GMaps.js &mdash; Elevation locations</h1>
+    <div class="row">
+      <div class="jumbotron">
+        <div id="map"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="span6">
+        <p>With GMaps.js you can add elevation this way:</p>
+        <pre>map.getElevations({
+      locations : [[-0.4237307,36.9549251], [-0.4237507,36.9569251],  [-0.4237907,36.9589251]],
+      callback : function (result, status){
+      if (status == google.maps.ElevationStatus.OK) {
+        console.log(result, status);
+      }
+    }
+  });</pre>
+    <blockquote class="bg-info"><p>As usual, the first step is to <i class="text-success"> create map container and reference it in your javascript. Next you specify Points Of Interest</i>
+       and the system Does the Magic</p></blockquote>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="lib/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC5oGUwT09nELrlGwrYOwJQj68yvSzUHGs&sensor=true"></script>
+<script type="text/javascript" src="lib/gmaps.js"></script>
+<script type="text/javascript">
+  var map;
+  $(document).ready(function(){
+    map = new GMaps({
+      el: '#map',
+      lat: -0.4237207,
+      lng: 36.9539251,
+      zoom: 17,
+    });
+    //locations request
+    map.getElevations({
+      locations : [[-0.4237307,36.9549251], [-0.4237507,36.9569251],  [-0.4237907,36.9589251]],
+        callback : function (result, status){
+        if (status == google.maps.ElevationStatus.OK) {
+          for (var i in result){
+           map.addMarker({
+            lat: result[i].location.lat(),
+            lng: result[i].location.lng(),
+            title: 'Marker with InfoWindow',
+            infoWindow: {
+              content: '<p>The elevation Here is appx<kbd> '+result[i].elevation+' meters</kbd></p>'
+            }
+          });
+         }
+        }
+      }
+    });
+  });
+  </script>
+</html>

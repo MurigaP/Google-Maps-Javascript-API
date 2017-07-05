@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Marker Clusterer</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="lib/styles.css" />
+</head>
+<body>
+  <h1>GMaps.js &mdash; Marker Clusterer</h1>
+  <div class="row">
+    <div class="jumbotron">
+      <div id="map"></div>
+    </div>
+    <div class="container">
+      <p>With GMaps.js you can use a marker clusterer to group large amount of markers:</p>
+      <pre>map = new GMaps({
+  div: '#map',
+  lat: -12.043333,
+  lng: -77.028333,
+  markerClusterer: function(map) {
+    return new MarkerClusterer(map);
+  }
+});</pre>
+    <blockquote class="bg-info">  <p>You can use MarkerClusterer or MarkerClustererPlus. If you want to use a custom marker clustering library, you have to define a <code>addMarker</code> method.</p></blockquote>
+      <p><span class="label notice">Note:</span> Read more about MarkerClusterer and MarkerClustererPlus <a href="http://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries">here</a>.</p>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="lib/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="lib/markerclusterer.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC5oGUwT09nELrlGwrYOwJQj68yvSzUHGs&sensor=true"></script>
+<script type="text/javascript" src="lib/gmaps.js"></script>
+<script type="text/javascript">
+  var map;
+  $(document).ready(function(){
+    map = new GMaps({
+      div: '#map',
+      lat: -0.4237207,
+      lng: 36.9539251,
+      zoom: 16,
+      markerClusterer: function(map) {
+        return new MarkerClusterer(map);
+      }
+    });
+
+    var lat_span = -0.42108156 - -0.4322392;
+    var lng_span = 36.95569 - 36.94144517;
+    var dict = [];
+    for(var i = 0; i < 100; i++) {
+      var latitude = Math.random()*(lat_span) + -0.42108156;
+      var longitude = Math.random()*(lng_span) + 36.94144517;
+      //dict.push("["+latitude+", "+longitude+"],");
+      map.addMarker({
+        lat: latitude,
+        lng: longitude,
+        title: 'Marker #' + i
+      });
+    }
+  //  console.log(dict);
+  });
+</script>
+</html>

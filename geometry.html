@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Geometry overlays</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="lib/styles.css" />
+</head>
+<body>
+  <h1>GMaps.js &mdash; Geometry overlays</h1>
+  <div class="row">
+    <div class="jumbotron">
+      <div id="map"></div>
+    </div>
+    <div class="container">
+      <p>You can draw geometry overlays (which can be a polygon or a rectangle or a circle):</p>
+      <pre>polygon = map.drawRectangle({
+  bounds: bounds,
+  strokeColor: '#BBD8E9',
+  strokeOpacity: 1,
+  strokeWeight: 3,
+  fillColor: '#BBD8E9',
+  fillOpacity: 0.6
+});
+polygon = map.drawPolygon({
+  paths: paths,
+  strokeColor: '#25D359',
+  strokeOpacity: 1,
+  strokeWeight: 3,
+  fillColor: '#25D359',
+  fillOpacity: 0.6
+});
+circle = map.drawCircle({
+  lat: lat,
+  lng: lng,
+  radius: 350,  //350 meters
+  strokeColor: '#432070',
+  strokeOpacity: 1,
+  strokeWeight: 3,
+  fillColor: '#432070',
+  fillOpacity: 0.6
+});</pre>
+      <p>Be careful with the settings as they are not the same for each overlay.</p>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="lib/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC5oGUwT09nELrlGwrYOwJQj68yvSzUHGs&sensor=true"></script>
+<script type="text/javascript" src="lib/gmaps.js"></script>
+<script type="text/javascript">
+  var map, rectangle, polygon, circle;
+  $(document).ready(function(){
+    map = new GMaps({
+      el: '#map',
+      lat: -0.4237207,
+      lng: 36.9539251,
+      zoom: 16
+    });
+    var bounds =  [[-0.42108156706529143, 36.94144517183304],[-0.43223924718305073, 36.95569306612015]];
+    rectangle = map.drawRectangle({
+      bounds: bounds,
+      strokeColor: '#BBD8E9',
+      strokeOpacity: 1,
+      strokeWeight: 3,
+      fillColor: '#BBD8E9',
+      fillOpacity: 0.6
+    });
+
+    var paths =  [[-0.4259307,36.9529251], [-0.4239507,36.9459251],  [-0.4237907,36.9489251],  [-0.4347907,36.94589251]];
+    polygon = map.drawPolygon({
+      paths: paths,
+      strokeColor: '#25D359',
+      strokeOpacity: 1,
+      strokeWeight: 3,
+      fillColor: '#25D359',
+      fillOpacity: 0.6
+    });
+    var lat = -0.4239507;
+    var lng = 36.9489251;
+    circle = map.drawCircle({
+      lat: lat,
+      lng: lng,
+      radius: 350,
+      strokeColor: '#432070',
+      strokeOpacity: 1,
+      strokeWeight: 3,
+      fillColor: '#432070',
+      fillOpacity: 0.6
+    });
+    for(var i in paths){
+      bounds.push(paths[i]);
+    }
+    var b = [];
+    for(var i in bounds){
+      latlng = new google.maps.LatLng(bounds[i][0], bounds[i][1]);
+      b.push(latlng);
+    }
+    for(var i in paths){
+      latlng = new google.maps.LatLng(paths[i][0], paths[i][1]);
+      b.push(latlng);
+    }
+    map.fitLatLngBounds(b);
+  });
+</script>
+</html>

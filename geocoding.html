@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Geocoding</title>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="lib/styles.css" />
+</head>
+<body>
+<div class="container-fluid">
+
+  <h1>GMaps.js &mdash; Geocoding</h1>
+  <div class="row">
+    <div class="jumbotron">
+      <form method="post" id="geocoding_form">
+        <label for="address">Address:</label>
+        <div class="input">
+          <input type="text" id="address" name="address" />
+          <input type="submit" class="btn" value="Search" />
+        </div>
+      </form>
+      <div id="map"></div>
+    </div>
+    <div class="container">
+      <p>You can geocoding this way:</p>
+      <pre>GMaps.geocode({
+  address: $('#address').val(),
+  callback: function(results, status){
+    if(status=='OK'){
+      var latlng = results[0].geometry.location;
+      map.setCenter(latlng.lat(), latlng.lng());
+      map.addMarker({
+        lat: latlng.lat(),
+        lng: latlng.lng()
+      });
+    }
+  }
+});</pre>
+      <p class="bg-primary text-warning">You can define either <kbd>address</kbd> or <kbd>lat</kbd> and <kbd>lng</kbd>. Also, you must define <kbd>callback</kbd>, which will use <kbd>results</kbd> of geocoding and <kbd>status</kbd>.</p>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="lib/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC5oGUwT09nELrlGwrYOwJQj68yvSzUHGs&sensor=true"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="lib/gmaps.js"></script>
+<script type="text/javascript">
+  var map;
+  $(document).ready(function(){
+    map = new GMaps({
+      el: '#map',
+      lat: -0.4237207,
+      lng: 36.9539251,
+      zoom: 17
+    });
+    $('#geocoding_form').submit(function(e){
+      e.preventDefault();
+      GMaps.geocode({
+        address: $('#address').val().trim(),
+        callback: function(results, status){
+          if(status=='OK'){
+            var latlng = results[0].geometry.location;
+            map.setCenter(latlng.lat(), latlng.lng());
+            map.addMarker({
+              lat: latlng.lat(),
+              lng: latlng.lng()
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
+</html>
